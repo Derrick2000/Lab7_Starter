@@ -186,6 +186,7 @@ function bindRecipeCard(recipeCard, pageName) {
  * Binds the 'keydown' event listener to the Escape key (esc) such that when
  * it is clicked, the home page is returned to
  */
+ 
 function bindEscKey() {
   /**
    * TODO - Part 1 Step 5
@@ -193,13 +194,14 @@ function bindEscKey() {
    * if the escape key is pressed, use your router to navigate() to the 'home'
    * page. This will let us go back to the home page from the detailed page.
    */
-  window.addEventListener('keydown',function(){
-    if(this.key == 'Escape'){
-      router.navigate('home')
-    }
-  })
+  window.addEventListener('keydown', bindEscKeyListener)
 }
 
+function bindEscKeyListener(button){
+  if(button.key == 'Escape'){
+    router.navigate('home');
+  }
+}
 
 /**
  * Binds the 'popstate' event on the window (which fires when the back &
@@ -220,11 +222,13 @@ function bindPopstate() {
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
-  window.addEventListener('popstate',function(){
-    if(this.state){
-      router.navigate(this.state.page,true)
-    }else{
-      router.navigate('home',true)
-    }
-  })
+  window.addEventListener('popstate', PopstateListener)
+}
+
+function PopstateListener(button){
+  if(button.state){
+    router.navigate(button.state.page, true);
+  } else {
+    router.navigate('home', true);
+  }
 }
