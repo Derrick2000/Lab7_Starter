@@ -104,7 +104,7 @@ function createRecipeCards() {
   
   // Inputs the data for the card. This is just the first recipe in the recipes array,
   // being used as the key for the recipeData object
-  for(var i = 0; i < recipes.length; ++i){
+  for(let i = 0; i < recipes.length; ++i){
     const recipeCard = document.createElement('recipe-card');
     if(i > 2){
       recipeCard.classList.add('hidden')
